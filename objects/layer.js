@@ -18,22 +18,25 @@ Each fish or other moving object will have a "layer" property. When it's time to
 */
 
 // a function to create a new layer object
-    var newLayer = function(num) {
-            
-            for (var i = 0; i < num; i++) {
-            //  create a new layer object
-                var layer = {};
-            //  offset the minimum y-coordinate according to the new layer's number
-                layer.min = new PVector(0, layer.yMin = layerHt*layers.length);
-                layer.max = new PVector(width,height);
-                layer.scalef = pow(depthScale,i);
-            //  add the layer to the array
-                layers.push(layer);
-            }
-    };
+var newLayer = function(num) {
+        
+    for (var i = 0; i < num; i++) {
+    //  create a new layer object
+        var layer = new Layer();
+
+    //  add the layer to the array
+        layers.push(layer);
+    }
+};
     
 var Layer = function() {
+
+    //  offset the minimum y-coordinate according to the new layer's number
+    this.min = new PVector(0, this.yMin = layerHt*layers.length);
+    this.max = new PVector(width,height);
     
+    this.depthScale = 0.9;
+    this.scalef = pow(this.depthScale,i);
     
 }
 
@@ -61,9 +64,9 @@ var Layer = function() {
             //  create a new layer object
                 var layer = {};
             //  offset the minimum y-coordinate according to the new layer's number
-                layer.min = new PVector(0, layer.yMin = layerHt*layers.length);
-                layer.max = new PVector(width,height);
-                layer.scalef = pow(depthScale,i);
+                this.min = new PVector(0, this.yMin = layerHt*layers.length);
+                this.max = new PVector(width,height);
+                this.scalef = pow(depthScale,i);
             //  add the layer to the array
                 layers.push(layer);
             }
